@@ -17,13 +17,14 @@ arcpy.env.overwriteOutput = True
 
 # Set input variables (Hard-wired)
 inputFile = r'C:\Users\mtgaf\Documents\NicholasSchool\GISDataAnalytics\ARGOSTracking\data\ARGOSdata\1997dg.txt'
+outputSR = arcpy.SpatialReference(53002)
 outputFC = r'C:\Users\mtgaf\Documents\NicholasSchool\GISDataAnalytics\ARGOSTracking\scratch\ARGOStrack.shp'
 
 #Create feature class to which we will add the features
 #First split file path into two varaivles to fit the tool properly
 outPath, outFile = os.path.split(outputFC)
 #Create feature class
-arcpy.management.CreateFeatureclass(outPath, outFile)
+arcpy.management.CreateFeatureclass(outPath, outFile, "POINT","","","",outputSR)
 
 #%% Construct a while loop and iterate through all lines in the data file
 # Open the ARGOS data file
