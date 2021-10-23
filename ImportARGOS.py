@@ -26,6 +26,12 @@ outPath, outFile = os.path.split(outputFC)
 #Create feature class
 arcpy.management.CreateFeatureclass(outPath, outFile, "POINT","","","",outputSR)
 
+# Add TagID, LC, IQ, and Date fields to the output feature class
+arcpy.AddField_management(outputFC,"TagID","LONG")
+arcpy.AddField_management(outputFC,"LC","TEXT")
+arcpy.AddField_management(outputFC,"Date","DATE")
+
+
 #%% Construct a while loop and iterate through all lines in the data file
 # Open the ARGOS data file
 inputFileObj = open(inputFile,'r')
