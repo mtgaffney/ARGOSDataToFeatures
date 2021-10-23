@@ -15,10 +15,10 @@ import sys, os, arcpy
 #Allow outputs to overwritten
 arcpy.env.overwriteOutput = True
 
-# Set input variables (Hard-wired)
-inputFolder = r'C:\Users\mtgaf\Documents\NicholasSchool\GISDataAnalytics\ARGOSTracking\data\ARGOSdata'
-outputSR = arcpy.SpatialReference(54002)
-outputFC = r'C:\Users\mtgaf\Documents\NicholasSchool\GISDataAnalytics\ARGOSTracking\scratch\ARGOStrack.shp'
+# Set input variables; hard wired commented out
+inputFolder = sys.argv[1] #r'C:\Users\mtgaf\Documents\NicholasSchool\GISDataAnalytics\ARGOSTracking\data\ARGOSdata'
+outputSR = sys.argv[2] #arcpy.SpatialReference(54002)
+outputFC = sys.argv[3] #r'C:\Users\mtgaf\Documents\NicholasSchool\GISDataAnalytics\ARGOSTracking\scratch\ARGOStrack.shp'
 
 #Create a list of files in the user provided input folder
 inputFiles = os.listdir(inputFolder)
@@ -43,7 +43,7 @@ for inputFile in inputFiles:
     if inputFile == 'README.txt': continue
 
     #Give the user some status
-    print(f'Working on file {inputFile}')
+    arcpy.AddMessage(f'Working on file {inputFile}')
     
     #Prepend input file with path
     inputFile = os.path.join(inputFolder, inputFile)
